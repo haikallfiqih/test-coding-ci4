@@ -5,10 +5,8 @@ Test Coding Basic with CI4
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+
   - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Getting Started
 
