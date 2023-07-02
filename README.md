@@ -1,62 +1,79 @@
-# CodeIgniter 4 Application Starter
+# Test Coding CI
 
-## What is CodeIgniter?
+Test Coding Basic with CI4
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Table of Contents
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Getting Started
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+These instructions will help you get a copy of the project up and running on your local machine.
 
-## Installation & updates
+### Installation
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+1. Clone the repository:
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+```bash
+git clone https://github.com/hiikalll/test-coding-ci4.git
+```
 
-## Setup
+Navigate to the project directory:
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+```bash
+cd project-name
+```
 
-## Important Change with index.php
+Install the project dependencies using Composer:
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+```bash
+composer install
+```
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+Copy the .env.example file to .env:
 
-**Please** read the user guide for a better explanation of how CI4 works!
+```bash
+cp .env.example .env
+```
 
-## Repository Management
+Make the database
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+<!-- generate database -->
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+```bash
+php spark db:create test-coding-ci4
+```
 
-## Server Requirements
+Update the .env file with your database credentials and other configuration settings. Make sure to set the database.default.database value to test-coding-ci4 (assuming you want to use the database named test-coding-ci4).
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+Generate an application key:
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+```bash
+php spark key:generate
+```
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Run the database migrations:
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```bash
+php spark migrate
+```
+
+Seed the database with default data:
+
+```bash
+php spark db:seed UserSeeder
+```
+
+This will create an admin user with the email ``admin@admin.com`` and password ``adminpassword``.
+
+Start the development server:
+
+```bash
+php spark serve
+```
+
+You can now access the project at [http://localhost:8080](http://localhost:8080)
